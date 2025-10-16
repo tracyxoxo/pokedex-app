@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.net.URL;
 import android.graphics.Bitmap;
 
-public class PokedexActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     int posicao = 1;
     int qtde = 10;
@@ -26,7 +26,7 @@ public class PokedexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_pokedex);
+        setContentView(R.layout.activity_main);
 
         lnlPokedex = findViewById(R.id.lnlPokedex);
 
