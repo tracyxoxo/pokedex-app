@@ -12,13 +12,16 @@
         android:id="@+id/tvWelcome"
         android:textSize="20sp"
         android:paddingBottom="24dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#E63946"
+        android:fontFamily="@font/roboto_regular"
         />
 
     <Button
         android:id="@+id/btnPokedex"
         android:text="Go to Pokédex"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E63946"/>
 </LinearLayout>
