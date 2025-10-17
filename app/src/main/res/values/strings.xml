@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="seja_bem_vindo_a_ao_pokedex">Seja bem-vindo(a) ao Pokedex!</string>
+    <string name="usu_rio">Usuário</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="n_o_tem_uma_conta_fa_a_o_registro">Não tem uma conta? Faça o registro!</string>
+    <string name="Senha">senha\n</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.pokedex;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -13,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.InputStream;
 import java.net.URL;
-import android.graphics.Bitmap;
+import android.content.Intent;
 
 public class PokedexActivity extends AppCompatActivity {
 
@@ -49,22 +50,36 @@ public class PokedexActivity extends AppCompatActivity {
     private void carregarImagem(int indice){
         ImageView img = new ImageView(getBaseContext());
 
-        new Thread(() -> {
-            try {
-                String formattedNumber = String.format("%03d", indice);
-                String url = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + formattedNumber + ".png";
-                InputStream is = new URL(url).openStream();
-                Bitmap b = BitmapFactory.decodeStream(is);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-                runOnUiThread(() -> {
-                    img.setImageBitmap(b);
-                    lnlPokedex.addView(img);
-                });
+                try {
+                    // Example: generate correct URL for each Pokémon
+                    String formattedIndex = String.format("%03d", indice);
+                    InputStream is = new URL("https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + formattedIndex + ".png").openStream();
+                    Bitmap b = BitmapFactory.decodeStream(is);
 
-            } catch (Exception e){
-                e.printStackTrace();
+                    img.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            img.setImageBitmap(b);
+
+                            // 👇 Add the click listener here
+                            img.setOnClickListener(v -> {
+                                Intent intent = new Intent(PokedexActivity.this, PokemonDetailsActivity.class);
+                                intent.putExtra("pokemon_index", indice); // pass the Pokémon number
+                                startActivity(intent);
+                            });
+                        }
+                    });
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }).start();
+
+        lnlPokedex.addView(img);
     }
 
 }

@@ -4,10 +4,19 @@
     android:padding="32dp"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F1FAEE">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="350px"
+        android:layout_height="390px"
+        android:layout_gravity="center"
+        android:src="@drawable/poke_ball_icon"
+        android:contentDescription="Pokédex logo"/>
 
     <TextView
-        android:text="Seja bem-vindo(a) ao Pokedex!"
+        android:text="@string/seja_bem_vindo_a_ao_pokedex"
         android:textSize="24sp"
         android:paddingBottom="24dp"
         android:layout_width="wrap_content"
@@ -18,20 +27,20 @@
 
     <EditText
         android:id="@+id/etUsername"
-        android:hint="Username"
+        android:hint="@string/usu_rio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <EditText
         android:id="@+id/etPassword"
-        android:hint="Password"
+        android:hint="@string/Senha"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnLogin"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -39,7 +48,7 @@
 
     <TextView
         android:id="@+id/tvRegister"
-        android:text="Não tem uma conta? Faça o registro!"
+        android:text="@string/n_o_tem_uma_conta_fa_a_o_registro"
         android:fontFamily="@font/roboto_regular"
         android:textColor="@android:color/holo_blue_light"
         android:paddingTop="16dp"
