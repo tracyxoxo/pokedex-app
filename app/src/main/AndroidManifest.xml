@@ -27,6 +27,8 @@
         <activity android:name=".PokedexActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".AddPokemonActivity" />
+
     </application>
 
 </manifest>

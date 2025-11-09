@@ -41,6 +41,15 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
 
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // Glide (you used it in details before)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Material already (for buttons/cards)
+    implementation("com.google.android.material:material:1.12.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
