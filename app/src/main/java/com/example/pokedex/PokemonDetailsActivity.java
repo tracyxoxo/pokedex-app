@@ -1,8 +1,10 @@
 package com.example.pokedex;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ public class PokemonDetailsActivity extends AppCompatActivity {
 
     private ImageView imgPokemon;
     private TextView tvName, tvNumber;
+    private ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class PokemonDetailsActivity extends AppCompatActivity {
         imgPokemon = findViewById(R.id.imgPokemon);
         tvName = findViewById(R.id.tvName);
         tvNumber = findViewById(R.id.tvNumber);
+        btnBack = findViewById(R.id.btnBack);
 
         // Get Pokémon index passed from MainActivity
         int index = getIntent().getIntExtra("pokemon_index", 1);
@@ -48,6 +52,10 @@ public class PokemonDetailsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }).start();
+
+        btnBack.setOnClickListener(c -> {
+            startActivity(new Intent(this, PokedexActivity.class));
+        });
     }
 
     // Temporary method to simulate Pokémon names
