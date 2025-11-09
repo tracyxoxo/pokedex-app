@@ -32,6 +32,14 @@ android {
 }
 
 dependencies {
+    implementation(libs.room.common.jvm)
+    val room_version = "2.5.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -40,4 +48,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+}
+
+android {
+    buildFeatures {
+        viewBinding = true
+    }
 }

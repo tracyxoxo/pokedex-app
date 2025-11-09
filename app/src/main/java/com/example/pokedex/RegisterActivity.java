@@ -25,6 +25,20 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
 
         btnRegister.setOnClickListener(v -> {
+            String username = etNewUsername.getText().toString().trim();
+            String password = etNewPassword.getText().toString().trim();
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            boolean ok = AuthManager.register(this, username, password);
+            if (!ok) {
+                Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LoginActivity.class));
             finish();

@@ -23,14 +23,21 @@ public class LoginActivity extends AppCompatActivity {
         tvRegister = findViewById(R.id.tvRegister);
 
         btnLogin.setOnClickListener(v -> {
-            String user = etUsername.getText().toString();
+            String user = etUsername.getText().toString().trim();
+            String pass = etPassword.getText().toString().trim();
 
-            if (user.isEmpty()) {
-                Toast.makeText(this, "Enter your username", Toast.LENGTH_SHORT).show();
+            if (user.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Enter username and password", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // In a real app, you'd validate credentials here.
+            if (!AuthManager.validate(this, user, pass)) {
+                Toast.makeText(this, "Invalid credentials or user not registered", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // keep session and go home
+            AuthManager.setCurrentUser(this, user);
             Intent i = new Intent(this, HomeActivity.class);
             i.putExtra("username", user);
             startActivity(i);

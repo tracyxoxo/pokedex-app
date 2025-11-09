@@ -66,15 +66,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="24dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPokedex"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="250dp"
+            android:layout_marginBottom="30dp"
             android:backgroundTint="#E63946"
             android:text="Acessar"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddPokemon"
+            android:layout_width="150dp"
+            android:layout_height="59dp"
+            android:text="Adicionar Pokémon"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:backgroundTint="#457B9D"
+            app:cornerRadius="25dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
