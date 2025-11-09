@@ -1,16 +1,15 @@
 package com.example.pokedex;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class PokedexActivity extends AppCompatActivity {
 
-    LinearLayout lnlPokedex;
+    RecyclerView rv;
     String username;
 
     @Override
@@ -18,10 +17,17 @@ public class PokedexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
 
-        lnlPokedex = findViewById(R.id.lnlPokedex);
-        username = getIntent().getStringExtra("username");
+        rv = findViewById(R.id.rvUserPokedex);
+        rv.setLayoutManager(new LinearLayoutManager(this));
 
+        username = getIntent().getStringExtra("username");
         loadUserPokemon();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserPokemon(); // refresh when returning from Add
     }
 
     private void loadUserPokemon() {
@@ -30,23 +36,12 @@ public class PokedexActivity extends AppCompatActivity {
                 .pokemonDao()
                 .getPokemonsByUser(username);
 
-        lnlPokedex.removeAllViews();
-
         if (list == null || list.isEmpty()) {
-            TextView tv = new TextView(this);
-            tv.setText("Seu Pokédex está vazio!\nAdicione um Pokémon.");
-            tv.setTextSize(18);
-            tv.setPadding(40, 60, 40, 60);
-            lnlPokedex.addView(tv);
+            Toast.makeText(this, "Seu Pokédex está vazio! Adicione um Pokémon.", Toast.LENGTH_SHORT).show();
+            rv.setAdapter(new UserPokemonAdapter(this, java.util.Collections.emptyList()));
             return;
         }
 
-        for (PokemonEntity p : list) {
-            TextView item = new TextView(this);
-            item.setText("#" + p.number + " - " + p.name + " (" + p.type + ")");
-            item.setTextSize(18);
-            item.setPadding(30, 30, 30, 30);
-            lnlPokedex.addView(item);
-        }
+        rv.setAdapter(new UserPokemonAdapter(this, list));
     }
 }

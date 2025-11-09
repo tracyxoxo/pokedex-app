@@ -44,6 +44,7 @@ public class AddPokemonActivity extends AppCompatActivity {
         rv = findViewById(R.id.rvPokemonGrid);
         rv.setLayoutManager(new GridLayoutManager(this, 3));
 
+
         adapter = new PokemonGridAdapter(items,
                 // onImageClick → open details
                 (id, name) -> {
